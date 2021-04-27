@@ -24,7 +24,7 @@ module.exports = app => {
     router.post("/:id/results/create", exercises.updateExercisewithResult);
 
     //Retrieve all Results that belong to a Exercise id
-    router.get("/:id/results/", exercises.findAllResults);
+    //router.get("/:id/results/", exercises.findAllResults);
 
     //Delete a Result with id
     router.delete("/results/:id", exercises.deleteResult);
@@ -34,3 +34,5 @@ module.exports = app => {
 
     app.use('/exercises', auth.checkIfAuthenticated, router);
   };
+
+  

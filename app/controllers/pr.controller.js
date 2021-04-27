@@ -123,6 +123,7 @@ exports.updateExercisewithResult = async (req, res) => {
                     weight: req.body.weight,
                     reps: req.body.reps,
                     time: req.body.time,
+                    comment: req.body.comment,
                     createdAt: req.body.createdAt
                   });
                 
@@ -144,7 +145,13 @@ exports.updateExercisewithResult = async (req, res) => {
         const newExercise = await Exercise.findByIdAndUpdate(
             exerciseId, 
             {
-                $push: { results: result._id }
+                $push: { results: {
+                  weight: req.body.weight,
+                  reps: req.body.reps,
+                  time: req.body.time,
+                  comment: req.body.comment,
+                  createdAt: req.body.createdAt
+                } }
             },
             { new: true, useFindAndModify: false },
         );
@@ -173,21 +180,21 @@ exports.deleteResult = (req, res) => {
 }
 
 // Retrieve all Results that belong to a specific Exercise
-exports.findAllResults = (req, res) => {
+// exports.findAllResults = (req, res) => {
 
-  const id = req.params.id;
+//   const id = req.params.id;
 
-  Exercise.find({"_id": id}).populate("results")
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving results."
-      });
-    });
-};
+//   Exercise.find({"_id": id}).populate("results")
+//     .then(data => {
+//       res.send(data);
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message:
+//           err.message || "Some error occurred while retrieving results."
+//       });
+//     });
+// };
 
 // Update a Result by the id in a specific Exercise
 exports.updateResult = (req, res) => {

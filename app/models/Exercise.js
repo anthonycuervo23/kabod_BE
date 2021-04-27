@@ -6,10 +6,10 @@ module.exports = mongoose => {
           uid: String,
           exercise: String,
           results: [
-            {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Result"
-            }
+            // {
+            //   type: mongoose.Schema.Types.ObjectId,
+            //   ref: "Result"
+            // }
           ],
         }
       )

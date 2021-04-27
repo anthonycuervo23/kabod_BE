@@ -3,10 +3,10 @@ module.exports = mongoose => {
       "Result",
       mongoose.Schema(
         {
-            weight: String,
-            reps: String,
+            weight: Number,
+            reps: Number,
             time: String,
-            score_type: String,
+            comment: String,
             createdAt: {
               type: Date,
               default: Date.now
