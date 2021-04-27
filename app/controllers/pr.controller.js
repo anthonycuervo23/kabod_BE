@@ -13,6 +13,7 @@ exports.create = (req, res) => {
         // Create a Exercise
         const exercise = new Exercise({
           exercise: req.body.exercise,
+          uid: req.body.uid,
         });
       
         // Save Exercise in the database
@@ -31,10 +32,11 @@ exports.create = (req, res) => {
 
 // Retrieve all Exercises from the database.
 exports.findAll = (req, res) => {
-    const exercise = req.query.exercise;
-    var condition = exercise ? { exercise: { $regex: new RegExp(exercise), $options: "i" } } : {};
-  
-    Exercise.find(condition)
+    // const exercise = req.query.exercise;
+    // var condition = exercise ? { exercise: { $regex: new RegExp(exercise), $options: "i" } } : {};
+    //const uid = req.query.uid;
+
+    Exercise.find()
       .then(data => {
         res.send(data);
       })

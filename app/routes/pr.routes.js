@@ -1,10 +1,12 @@
+//import {checkIfAuthenticated} from "../controllers/auth.controller";
+
 module.exports = app => {
     const exercises = require("../controllers/pr.controller.js");
-  
+    const auth = require("../controllers/auth.controller.js");
     var router = require("express").Router();
   
     // Create a new Exercise
-    router.post("/create", exercises.create);
+    router.post("/create" ,exercises.create);
   
     // Retrieve all Exercises
     router.get("/", exercises.findAll);
@@ -30,5 +32,5 @@ module.exports = app => {
     //Update a Result with id
     router.put("/results/:id", exercises.updateResult);
 
-    app.use('/exercises', router);
+    app.use('/exercises', auth.checkIfAuthenticated, router);
   };

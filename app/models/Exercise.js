@@ -3,6 +3,7 @@ module.exports = mongoose => {
       "exercise",
       mongoose.Schema(
         {
+          uid: String,
           exercise: String,
           results: [
             {

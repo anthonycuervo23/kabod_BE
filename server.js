@@ -1,6 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const admin = require('firebase-admin')
+require("dotenv/config");
+
+const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://fbauthdemo-2a451.firebaseio.com"
+});
 
 const app = express();
 
@@ -15,6 +24,9 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+// // Check auth
+// require("./app/routes/pr.routes")(app);
 
 //Connect to Database
 const db = require("./app/models");
