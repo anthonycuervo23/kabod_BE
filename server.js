@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const admin = require('firebase-admin')
+const admin = require('firebase-admin');
+const db = require("./app/models");
 require("dotenv/config");
 
 const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
@@ -25,11 +26,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// // Check auth
-// require("./app/routes/pr.routes")(app);
-
 //Connect to Database
-const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
