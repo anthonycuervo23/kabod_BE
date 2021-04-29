@@ -1,6 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const admin = require('firebase-admin');
+const db = require("./app/models");
+require("dotenv/config");
+
+const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://fbauthdemo-2a451.firebaseio.com"
+});
 
 const app = express();
 
@@ -17,7 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Connect to Database
-const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,

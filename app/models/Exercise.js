@@ -1,18 +1,23 @@
 module.exports = mongoose => {
-    const Exercise = mongoose.model(
-      "exercise",
-      mongoose.Schema(
+  var schema = mongoose.Schema(
+    {
+      uid: String,
+      exercise: String,
+      results: [
         {
-          exercise: String,
-          results: [
-            {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Result"
-            }
-          ],
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Result"
         }
-      )
-    );
-  
-    return Exercise;
-  };
+      ],
+    }
+  );
+
+  schema.method("toJSON", function () {
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+  });
+
+  const Exercise = mongoose.model("exercise", schema);
+  return Exercise;
+};
