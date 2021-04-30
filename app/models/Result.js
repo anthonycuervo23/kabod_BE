@@ -5,10 +5,7 @@ module.exports = mongoose => {
       reps: Number,
       time: String,
       comment: String,
-      createdAt: {
-        type: Date,
-        default: Date.now
-      }
+      createdAt: Number,
     }
   );
 
