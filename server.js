@@ -6,10 +6,13 @@ const db = require("./app/models");
 require("dotenv/config");
 
 const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-
+const firebaseProjectID = process.env.PROJECT_ID;
+const firebasePrivateKey = process.env.PRIVATE_KEY;
+const firebaseClientEmail = process.env.CLIENT_EMAIL;
+const firebaseDBUrl = process.env.DATABASE_URL;
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://fbauthdemo-2a451.firebaseio.com"
+  credential: admin.credential.cert({"projectId": firebaseProjectID, "private_key": firebasePrivateKey, "client_email": firebaseClientEmail}),
+  databaseURL: firebaseDBUrl
 });
 
 const app = express();
