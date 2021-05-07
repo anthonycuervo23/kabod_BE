@@ -6,9 +6,6 @@ const db = require("./app/models");
 require("dotenv/config");
 
 const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS_FILE);
-// const firebaseProjectID = process.env.PROJECT_ID;
-// const firebasePrivateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
-// const firebaseClientEmail = process.env.CLIENT_EMAIL;
 const firebaseDBUrl = process.env.DATABASE_URL;
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -17,9 +14,6 @@ admin.initializeApp({
 
 const app = express();
 
-// var corsOptions = {
-//   origin: "http://localhost:8081"
-// };
 
 app.use(cors());
 
