@@ -7,7 +7,7 @@ require("dotenv/config");
 
 const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 const firebaseProjectID = process.env.PROJECT_ID;
-const firebasePrivateKey = process.env.PRIVATE_KEY;
+const firebasePrivateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
 const firebaseClientEmail = process.env.CLIENT_EMAIL;
 const firebaseDBUrl = process.env.DATABASE_URL;
 admin.initializeApp({
