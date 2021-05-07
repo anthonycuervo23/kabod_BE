@@ -5,7 +5,7 @@ const admin = require('firebase-admin');
 const db = require("./app/models");
 require("dotenv/config");
 
-const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS_FILE);
 // const firebaseProjectID = process.env.PROJECT_ID;
 // const firebasePrivateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
 // const firebaseClientEmail = process.env.CLIENT_EMAIL;
