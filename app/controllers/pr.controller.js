@@ -183,7 +183,7 @@ exports.updateResult = (req, res) => {
 
   const id = req.params.id;
 
-  Result.findByIdAndUpdate(id, req.body, { useFindAndModify: false }, {new: true})
+  Result.findByIdAndUpdate(id, req.body, {returnOriginal: false})
     .then(data => {
       if (!data) {
         res.status(404).send({
